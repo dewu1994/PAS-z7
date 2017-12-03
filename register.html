@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Zarejestruj się - CRM</title>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<style>
+.text-center {
+  text-align: center;
+}
+body {
+  margin-top: 100px;
+  background: #16a085;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <div class="panel panel-primary">
+        <div class="panel-heading text-center"><h4>Zarejestruj się</h4></div>
+		<div class="panel-body">
+		<form action="register.php" method="post">
+          <div class="form-group">
+            <label for="usr">Login:</label>
+            <input type="text" name="username" placeholder="Login" class="form-control" id="usr">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Hasło:</label>
+            <input type="password" name="password1" placeholder="Hasło" class="form-control" id="pwd">
+          </div>
+		  <div class="form-group">
+            <label for="pwd">Powtórz hasło:</label>
+            <input type="password" name="password2" placeholder="Powtórz hasło" class="form-control" id="pwd2">
+          </div>
+        <input type="submit" class="btn btn-primary" value="Zarejestruj"><p style="float: right;">Masz już konto? <a href="login.html">Zaloguj się!</a></p>
+        </form>
+
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
