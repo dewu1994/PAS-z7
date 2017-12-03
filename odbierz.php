@@ -25,6 +25,7 @@ body {
 	     <div class="panel-heading">Twoje pliki</div>
 		 <div class="panel-body">
 <?php
+//ograniczenie wysyłanych plików do 100KB
 $max_rozmiar = 1000000;
 if (is_uploaded_file($_FILES['plik']['tmp_name'])){
 	if ($_FILES['plik']['size'] > $max_rozmiar) {

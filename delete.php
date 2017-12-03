@@ -1,4 +1,5 @@
 <?php
+	//usuwanie konkretnego pliku
 	$filename = basename($_GET['file']);
 	$pathh = $_GET['path'];
 	$pathh = str_replace('./pliki/','',$pathh);

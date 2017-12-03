@@ -25,6 +25,7 @@ body {
 	     <div class="panel-heading">Twoje pliki</div>
 		 <div class="panel-body">
 <?php
+//tworzenie folderu w katalogu danego użytkownika
 if(isset($_POST['folder'])){
 	$user=$_COOKIE['site_username'];
 	if(isset($_GET['id'])){

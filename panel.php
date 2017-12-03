@@ -41,9 +41,7 @@ body {
 	
 	$result = mysqli_query($link, "SELECT * FROM logi WHERE login='".$_COOKIE['site_username']."' ORDER BY id_logowania DESC LIMIT 1,1"); 
 	$rekord = mysqli_fetch_array($result);
-	
-
-		
+			
 ?>
   <div class="row">
     <div class="col-md-9">	  
@@ -67,16 +65,14 @@ body {
 			<?php
 			$listDirCount = 0;
 
+			//funkcja odpowiedzialna za obsługę dodawania i suuwania plików i katalogów w odpowiedniej lokalizacji
 			function listDir($path = ".") {
 				global $listDirCount;
 				
 				$folders = array();
 				$files = array();
-				
-				// Open the given path
-				if ($handle = opendir($path)) {
-					// Loop through its contents adding folder paths or files to separate arrays
-					// Make sure not to include "." or ".." in the listing.
+								
+				if ($handle = opendir($path)) {					
 					
 					while (false !== ($file = readdir($handle))) {
 						if ($file != "." && $file != "..") {
@@ -85,16 +81,11 @@ body {
 							}
 							else { $files[] = $file; }
 						}
-					}
-					
-					// Once we build the folder array, get a new number, create a clickable link for the folder, 
-					// and then construct a div tag which will contain the next list of folders/files.
-					// The link will trigger our javascript above to toggle the div's display on and off.
+					}				
 					
 					for ($i = 0; $i < count($folders); $i++) {
 						$listDirCount++;
 						$nazwa=$folders[$i];
-						// Here is the folder name, so you can add icons and such to this line
 						echo "<a href=\"javascript:void(0)\" onclick=\"showSubs($listDirCount)\"><img style='margin-left:15px;' src='images/rsz_folder.png'>" . basename($folders[$i]) . "</a>
 							<a style='margin-left:20px;' href='dodajfolder.php?id=$nazwa'><img src='images/rsz_add_folder.png'> Dodaj podfolder</a>
 							<a style='margin-left:20px;' href='odbierz.php?id=$nazwa'><img src='images/rsz_upload.png'> Dodaj plik do folderu</a>							
@@ -104,13 +95,10 @@ body {
 						listDir($folders[$i]);
 						echo '</div>';
 					}
-					
-					// Here we just loop and print the file names. Add icons here for files if you like.
+										
 					for ($i = 0; $i < count($files); $i++) {
 						echo "{$files[$i]} <a href='download.php?path=$path&file=".$files[$i]."'><img src='images/rsz_download.png'></a><a href='delete.php?path=$path&file=".$files[$i]."'><img src='images/rsz_delete.png'></a><br/>\n";
 					}
-					
-					// Finally close the directory.
 					closedir($handle);
 				}
 			}

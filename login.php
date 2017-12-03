@@ -7,6 +7,7 @@ or die ("Nie mozna połączyć się z bazą danych z powodu: ".mysqli_error());
 
 // pobieranie informacji o adresie IP
 $ip = $_SERVER['REMOTE_ADDR'];
+
 $login=$_POST['username']; 
 $pass=$_POST['password']; 
 
@@ -32,6 +33,7 @@ if($rekord['haslo']==$pass) // czy hasło zgadza się z BD
 }
 else
 {
+	//sprawdzanie, czy konto nie zostało już zablokowane
 	$nieudane = $rekord [3];
 	if($nieudane<3){
 		$link->query("UPDATE users SET nieudane=nieudane+1 WHERE login='$login'");
@@ -41,6 +43,7 @@ else
 		echo "<a href=login.html>Spróbuj ponownie</a>";
 	}
 	else{
+		//wprowadzanie blokady na 5 minut
 		$link->query("UPDATE users SET blok=(CURRENT_TIMESTAMP + INTERVAL 5 MINUTE) WHERE login='$login'");
 		echo "Twoje konto zastało tymczasowo zablokowane ze względu na zbyt dużą ilość nieprawidłowych prób logowania<br>"; 
 		echo "Wróć do <a href=index.php>strony głównej</a>.";

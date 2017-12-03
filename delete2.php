@@ -1,4 +1,5 @@
 <?php
+	//usuwanie zaznaczonego folderu wraz z ewentualnymi plikami
     function delTree($dir)
     { 
         $files = array_diff(scandir($dir), array('.', '..')); 
