@@ -1,7 +1,9 @@
 <?php
 $filename = basename($_GET['file']);
+$pathh = $_GET['path'];
+$pathh = str_replace('./pliki/','',$pathh);
 // Specify file path.
-$path = $_SERVER['DOCUMENT_ROOT'].'/z7/pliki/'.$_COOKIE['site_username'];
+$path = $_SERVER['DOCUMENT_ROOT'].'/z7/pliki/'.$pathh;
 $download_file =  $path.'/'.$filename;
 
 if(!empty($filename)){
