@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Damian Wierzbiński - CRM</title>
+<title>Panel użytkownika - CRM</title>
 <meta charset="utf-8" />
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -61,8 +61,8 @@ body {
 	    <div class="panel-heading">Twoje pliki</div>
 		<div class="panel-body">
 			<a href="#"><img src='images/rsz_folder.png'><?= $_COOKIE['site_username']; ?></a> 
-			<a style='margin-left:20px;' href='dodaj.html'><img src='images/rsz_add_folder.png'> Dodaj podfolder</a> 
-			<a style='margin-left:20px;' href='wyslij.html'><img src='images/rsz_upload.png'> Dodaj plik do folderu</a><br/>
+			<a style='margin-left:20px;' href='dodajfolder.php'><img src='images/rsz_add_folder.png'> Dodaj folder</a> 
+			<a style='margin-left:20px;' href='odbierz.php'><img src='images/rsz_upload.png'> Dodaj plik do folderu</a><br/>
 
 			<?php
 			$listDirCount = 0;
@@ -93,12 +93,12 @@ body {
 					
 					for ($i = 0; $i < count($folders); $i++) {
 						$listDirCount++;
-						
+						$nazwa=$folders[$i];
 						// Here is the folder name, so you can add icons and such to this line
 						echo "<a href=\"javascript:void(0)\" onclick=\"showSubs($listDirCount)\"><img style='margin-left:15px;' src='images/rsz_folder.png'>" . basename($folders[$i]) . "</a>
-							<a style='margin-left:20px;' href='dodaj.html'><img src='images/rsz_add_folder.png'> Dodaj podfolder</a>
-							<a style='margin-left:20px;' href='wyslij.html'><img src='images/rsz_upload.png'> Dodaj plik do folderu</a>							
-							<a style='margin-left:20px;' href='#'><img src='images/rsz_delete_folder.png'> Usuń folder</a><br/>\n";
+							<a style='margin-left:20px;' href='dodajfolder.php?id=$nazwa'><img src='images/rsz_add_folder.png'> Dodaj podfolder</a>
+							<a style='margin-left:20px;' href='odbierz.php?id=$nazwa'><img src='images/rsz_upload.png'> Dodaj plik do folderu</a>							
+							<a style='margin-left:20px;' href='delete2.php?id=$nazwa'><img src='images/rsz_delete_folder.png'> Usuń folder</a><br/>\n";
 						
 						echo '<div id="folder' . $listDirCount . '" style="margin-left: 15px; margin-right: 10px; display: none;">';
 						listDir($folders[$i]);
@@ -107,7 +107,7 @@ body {
 					
 					// Here we just loop and print the file names. Add icons here for files if you like.
 					for ($i = 0; $i < count($files); $i++) {
-						echo "{$files[$i]} <a href='download.php?file=".$files[$i]."'><img src='images/rsz_download.png'></a><img src='images/rsz_delete.png'><br/>\n";
+						echo "{$files[$i]} <a href='download.php?path=$path&file=".$files[$i]."'><img src='images/rsz_download.png'></a><a href='delete.php?path=$path&file=".$files[$i]."'><img src='images/rsz_delete.png'></a><br/>\n";
 					}
 					
 					// Finally close the directory.

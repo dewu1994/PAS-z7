@@ -1,14 +1,9 @@
 <?php
-$dir = 'samples' . DIRECTORY_SEPARATOR . 'sampledirtree';
-$it = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
-$files = new RecursiveIteratorIterator($it,
-             RecursiveIteratorIterator::CHILD_FIRST);
-foreach($files as $file) {
-    if ($file->isDir()){
-        rmdir($file->getRealPath());
-    } else {
-        unlink($file->getRealPath());
-    }
-}
-rmdir($dir);
+	$filename = basename($_GET['file']);
+	$pathh = $_GET['path'];
+	$pathh = str_replace('./pliki/','',$pathh);
+	$path = $_SERVER['DOCUMENT_ROOT'].'/z7/pliki/'.$pathh;	
+	unlink($path.'/'.$filename);
+	
+	header("Location:panel.php");		
 ?>

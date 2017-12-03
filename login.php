@@ -17,6 +17,7 @@ if(!$rekord)
 echo "Niepoprawny login lub hasło.<br />";
 echo "<a href=login.html>Spróbuj ponownie</a>";
 }
+//sprawdzanie, czy konto nie jest zablokowane
 else if (strtotime($rekord['blok'])<time())
 { 
 if($rekord['haslo']==$pass) // czy hasło zgadza się z BD
